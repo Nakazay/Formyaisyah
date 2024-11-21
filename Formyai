@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for my ai</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f9a8d4, #f472b6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      color: white;
+    }
+
+    /* Amplop surat */
+    #envelope {
+      position: relative;
+      width: 200px;
+      height: 120px;
+      background: #ff6f61;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s;
+    }
+
+    #envelope:hover {
+      transform: scale(1.1);
+    }
+
+    /* Lipatan atas */
+    #flap {
+      position: absolute;
+      top: 0;
+      width: 200px;
+      height: 100px;
+      background: #ff3d3d;
+      transform-origin: top;
+      transform: rotateX(0deg);
+      transition: transform 1s ease-in-out;
+    }
+
+    /* Lipatan bawah */
+    #envelope::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 200px;
+      height: 50px;
+      background: #ff5a5f;
+    }
+
+    /* Form input */
+    #formContainer {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      outline: none;
+      width: 200px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #4caf50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Pesan akhir */
+    #message {
+      display: none;
+      font-size: 24px;
+      color: yellow;
+      margin-top: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 3s steps(20, end), blink 0.5s step-end infinite alternate;
+    }
+
+    /* Animasi mengetik */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 20ch; /* Panjang teks */
+      }
+    }
+
+    /* Animasi kursor berkedip */
+    @keyframes blink {
+      from {
+        border-right-color: white;
+      }
+      to {
+        border-right-color: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Coba buka amplopnya</h1>
+  <div id="envelope" onclick="openEnvelope()">
+    <div id="flap"></div>
+  </div>
+  <div id="formContainer">
+    <input type="text" id="nameInput" placeholder="Nama Kamu">
+    <button onclick="showMessage()">Submit</button>
+  </div>
+  <div id="message"></div>
+
+  <script>
+    function openEnvelope() {
+      // Animasi membuka lipatan amplop
+      const flap = document.getElementById("flap");
+      flap.style.transform = "rotateX(180deg)";
+      
+      // Tampilkan form input setelah amplop terbuka
+      setTimeout(() => {
+        document.getElementById("formContainer").style.display = "flex";
+      }, 1000); // Tunggu animasi selesai
+    }
+
+    function showMessage() {
+      const name = document.getElementById("nameInput").value.trim();
+      const messageDiv = document.getElementById("message");
+
+      if (name === "") {
+        alert("Tulis nama kamu!");
+      } else {
+        document.getElementById("formContainer").style.display = "none";
+        messageDiv.style.display = "block";
+        messageDiv.textContent = `You are the only one on my mind,you're the love of my life,you make everything feel possible,as long as I have you in my life, I'll be okay, im in love with you,i've fallen for you, im crazy about you, i dore you, you are my everything, I love you so bad, I LOVE YOUUUUUUUU, ${name}!`;
+      }
+    }
+  </script>
+</body>
+</html>
